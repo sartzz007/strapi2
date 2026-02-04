@@ -31,7 +31,7 @@ This task focused on real-world cloud deployment challenges such as SSH access, 
 - Public IP output
 
 ### Terraform Workflow Used
-```bash
+
 terraform init
 terraform plan
 terraform apply
