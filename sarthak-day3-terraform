@@ -1,0 +1,128 @@
+elow is a clean, professional README.md you can directly paste into your GitHub repo for TODAY’S TASK (Day 3).
+It’s written in a way that reviewers understand you actually did the work, including real issues (which is a plus).
+
+# Day 3 – Deploy Strapi on AWS EC2 using Terraform
+
+## Overview
+On Day 3, the objective was to provision an AWS EC2 instance using **Terraform (Infrastructure as Code)** and deploy **Strapi** on the virtual machine, similar to the local setup done on Day 1.
+
+This task focused on real-world cloud deployment challenges such as SSH access, key pair handling, Node.js setup, dependency installation, and system resource constraints.
+
+---
+
+## Tech Stack Used
+- AWS EC2 (Ubuntu)
+- Terraform
+- Node.js & npm
+- Strapi
+- SSH
+- Windows 11 (local machine)
+
+---
+
+## Infrastructure Provisioning (Terraform)
+
+### Resources Created
+- EC2 instance (Ubuntu)
+- Security Group
+  - SSH access (port 22)
+  - Application access
+- AWS Key Pair
+- Public IP output
+
+### Terraform Workflow Used
+```bash
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+
+
+Terraform was used to automate the creation and destruction of infrastructure instead of manual EC2 setup.
+
+SSH Access to EC2
+
+Connected to the instance using SSH and a .pem key file
+
+Correct OS user was used:
+
+ubuntu for Ubuntu AMI
+
+File permissions were fixed on Windows to allow SSH access
+
+ssh -i day2-final.pem ubuntu@<EC2_PUBLIC_IP>
+
+Node.js & npm Setup
+
+Faced conflicts due to older Node.js versions pre-installed on the VM
+
+Removed broken dependencies and reinstalled Node.js
+
+Final versions verified:
+
+node -v
+npm -v
+
+Strapi Deployment on EC2
+Steps Performed
+
+Navigated to the Strapi project directory
+
+Installed dependencies using npm
+
+Ran Strapi in development mode
+
+npm install
+npx strapi develop
+
+Issues Faced
+
+npm installation freezes due to limited EC2 resources (t3.micro)
+
+High CPU and memory usage observed
+
+Network-related npm errors (ECONNRESET)
+
+Strapi installation required retries
+
+System monitoring was done using:
+
+top
+ps aux | grep node
+
+
+These issues highlighted real-world limitations of small EC2 instances when running heavy Node.js applications.
+
+Key Learnings
+
+Terraform simplifies infrastructure management but requires correct state handling
+
+AWS key pair name and local .pem file are different concepts
+
+SSH access depends on:
+
+Correct key pair
+
+Correct OS user
+
+Proper file permissions
+
+Running Strapi on low-spec EC2 instances can cause performance issues
+
+DevOps work involves significant troubleshooting and debugging
+
+Current Status
+
+EC2 successfully launched using Terraform
+
+SSH access verified
+
+Node.js and npm installed
+
+Strapi project setup and execution tested
+
+Infrastructure cleaned up using Terraform destroy when required
+
+Conclusion
+
+This task provided hands-on experience with cloud provisioning, Infrastructure as Code, and application deployment on AWS, along with exposure to real production-like issues.
